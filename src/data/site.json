@@ -1,0 +1,33 @@
+{
+  "name": "Rj Dela Cruz",
+  "role": "Aspiring Software Engineer",
+  "tagline": "I build clean, reliable software and learn something new with every project.",
+  "about": [
+    "I'm an aspiring software engineer who enjoys turning problems into working software. I've been building my skills across TypeScript, React, C#, and Python, and I'm comfortable working with RESTful APIs and both SQL and MongoDB databases.",
+    "I'm especially interested in automation and data analytics: finding ways to save people time and make sense of information. Right now I'm focused on building my first real projects, starting with this site.",
+    "I'm open to entry-level roles, internships, and freelance work."
+  ],
+  "skills": [
+    {
+      "group": "Languages",
+      "items": ["TypeScript", "JavaScript", "C#", "Python", "SQL"]
+    },
+    {
+      "group": "Frameworks & Libraries",
+      "items": ["React", "Astro", "Tailwind CSS", "LINQ"]
+    },
+    {
+      "group": "Data & Backend",
+      "items": ["RESTful APIs", "SQL Database Development", "MongoDB", "Data Analytics", "Automation"]
+    },
+    {
+      "group": "Professional",
+      "items": ["Problem Solving & Analytical Thinking", "Communication", "Collaboration"]
+    }
+  ],
+  "contact": {
+    "email": "rjjdelacruz2003@gmail.com",
+    "github": "https://github.com/ArjieeAr",
+    "linkedin": "https://www.linkedin.com/in/ralph-jincent-dela-cruz-418650399"
+  }
+}

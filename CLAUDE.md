@@ -1,0 +1,37 @@
+# Portfolio Website
+
+Personal portfolio for Rj, an aspiring software engineer. Audience is recruiters
+and potential clients. Projects will be added over time.
+
+## Tech stack
+- Astro + Tailwind CSS
+- Deployed on Vercel
+
+## Commands
+- `npm run dev` – start dev server
+- `npm run build` – production build
+- `npm run preview` – preview the build
+
+## Structure
+- Projects are stored in `src/data/projects.json`. Add new projects there,
+  never hardcode them in components.
+- Personal details (name, role, tagline, about, skills, contact links) are in
+  `src/data/site.json`; components read from it rather than hardcoding text.
+- Blog posts are Markdown files in `src/content/blog/`. Frontmatter schema
+  (title, description, pubDate, draft) is in `src/content.config.ts`.
+- The Projects section, its nav link and the blog preview hide themselves
+  when there's nothing to show.
+- Astro 7: import `z` from `astro/zod` (not `astro:content`).
+
+## Design rules
+- Minimal and modern, dark mode default with light mode toggle
+- One accent color: teal
+- Mobile-first and fully responsive
+- Accessible: semantic HTML, alt text, keyboard navigation
+
+## Working preferences
+- I'm still learning, so briefly explain significant changes and why.
+- Propose a plan before large changes and wait for my approval.
+- Keep dependencies minimal; ask before adding new packages.
+- Run `npm run build` after changes to check nothing is broken.
+- Never add placeholder or fake project content.

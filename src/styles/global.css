@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+/* Dark mode is controlled by a "dark" class on <html> (set by the theme toggle). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Keep section headings visible below the sticky header when jumping via nav links. */
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-teal-500);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  ::before,
+  ::after {
+    transition-duration: 0s !important;
+    animation-duration: 0s !important;
+  }
+}
+
+/* Typography for rendered Markdown blog posts. */
+@layer components {
+  .post-body {
+    @apply leading-relaxed;
+  }
+  .post-body > * + * {
+    @apply mt-5;
+  }
+  .post-body h2 {
+    @apply mt-10 text-2xl font-semibold text-zinc-900 dark:text-zinc-100;
+  }
+  .post-body h3 {
+    @apply mt-8 text-xl font-semibold text-zinc-900 dark:text-zinc-100;
+  }
+  .post-body a {
+    @apply text-teal-700 underline underline-offset-4 hover:no-underline dark:text-teal-400;
+  }
+  .post-body strong {
+    @apply font-semibold text-zinc-900 dark:text-zinc-100;
+  }
+  .post-body ul {
+    @apply list-disc space-y-2 pl-6;
+  }
+  .post-body ol {
+    @apply list-decimal space-y-2 pl-6;
+  }
+  .post-body blockquote {
+    @apply border-l-4 border-teal-600 pl-4 italic dark:border-teal-400;
+  }
+  .post-body :not(pre) > code {
+    @apply rounded bg-zinc-100 px-1.5 py-0.5 text-sm dark:bg-zinc-800;
+  }
+  .post-body pre {
+    @apply overflow-x-auto rounded-lg p-4 text-sm;
+  }
+  .post-body img {
+    @apply rounded-lg;
+  }
+}

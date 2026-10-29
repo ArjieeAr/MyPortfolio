@@ -1,0 +1,23 @@
+---
+import Section from "./Section.astro";
+import PostList from "./PostList.astro";
+import { getPublishedPosts } from "../lib/posts";
+
+const LATEST_COUNT = 3;
+const posts = await getPublishedPosts();
+---
+
+{/* The whole section is hidden when there are no published posts. */}
+{
+  posts.length > 0 && (
+    <Section id="blog" title="Latest Posts">
+      <PostList posts={posts.slice(0, LATEST_COUNT)} />
+      <a
+        href="/blog/"
+        class="mt-10 inline-block font-medium text-teal-700 underline-offset-4 hover:underline dark:text-teal-400"
+      >
+        All posts &rarr;
+      </a>
+    </Section>
+  )
+}

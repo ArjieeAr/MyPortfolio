@@ -1,0 +1,26 @@
+---
+import Section from "./Section.astro";
+import site from "../data/site.json";
+
+const { email, github, linkedin } = site.contact;
+const linkClass =
+  "font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:text-teal-700 hover:decoration-teal-700 dark:text-zinc-100 dark:decoration-zinc-700 dark:hover:text-teal-400 dark:hover:decoration-teal-400";
+---
+
+<Section id="contact" title="Contact">
+  <p class="max-w-xl text-lg leading-relaxed">
+    I'm currently looking for new opportunities. Whether you have a role, a project, or just a question, my inbox is
+    open.
+  </p>
+  <a
+    href={`mailto:${email}`}
+    class="mt-8 inline-block rounded-md bg-teal-700 px-5 py-2.5 font-medium text-white transition-colors hover:bg-teal-800 dark:bg-teal-400 dark:text-zinc-950 dark:hover:bg-teal-300"
+  >
+    Say hello
+  </a>
+  <ul class="mt-8 flex flex-wrap gap-x-6 gap-y-2">
+    <li><a href={`mailto:${email}`} class={linkClass}>{email}</a></li>
+    <li><a href={github} class={linkClass}>GitHub</a></li>
+    <li><a href={linkedin} class={linkClass}>LinkedIn</a></li>
+  </ul>
+</Section>

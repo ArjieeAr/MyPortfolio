@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Personal Portfolio",
+    "description": "This website. A fast, accessible single-page portfolio with a Markdown-powered blog, dark and light themes, and project data kept separate from the layout so it's easy to update.",
+    "tech": ["Astro", "Tailwind CSS", "TypeScript", "Markdown"]
+  },
+  {
+    "title": "SQL Practice Platform",
+    "description": "A LeetCode-style practice site focused only on SQL. Write a query, run it instantly in the browser on a real Postgres (PGlite), then submit it to be graded against hidden test cases full of NULLs, ties and boundary dates. Includes a Monaco editor with table and column completion, a schema viewer, and accounts with submission history and progress tracking.",
+    "tech": ["Next.js", "TypeScript", "Tailwind CSS", "Supabase", "PGlite", "Vitest", "Playwright"],
+    "repo": "https://github.com/ArjieeAr/SQL-Practice",
+    "live": "https://sql-practice-beta.vercel.app/"
+  }
+]

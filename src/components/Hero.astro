@@ -1,0 +1,30 @@
+---
+import site from "../data/site.json";
+import { projects } from "../lib/projects";
+---
+
+<section aria-labelledby="hero-heading" class="py-20 sm:py-28">
+  <p class="mb-3 font-medium text-teal-700 dark:text-teal-400">{site.role}</p>
+  <h1 id="hero-heading" class="text-4xl font-bold tracking-tight text-zinc-900 sm:text-6xl dark:text-zinc-100">
+    Hi, I'm {site.name}.
+  </h1>
+  <p class="mt-6 max-w-xl text-lg leading-relaxed">{site.tagline}</p>
+  <div class="mt-10 flex flex-wrap gap-4">
+    {
+      projects.length > 0 && (
+        <a
+          href="#projects"
+          class="rounded-md bg-teal-700 px-5 py-2.5 font-medium text-white transition-colors hover:bg-teal-800 dark:bg-teal-400 dark:text-zinc-950 dark:hover:bg-teal-300"
+        >
+          View my work
+        </a>
+      )
+    }
+    <a
+      href="#contact"
+      class="rounded-md border border-zinc-300 px-5 py-2.5 font-medium text-zinc-900 transition-colors hover:border-teal-700 hover:text-teal-700 dark:border-zinc-700 dark:text-zinc-100 dark:hover:border-teal-400 dark:hover:text-teal-400"
+    >
+      Get in touch
+    </a>
+  </div>
+</section>

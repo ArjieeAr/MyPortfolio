@@ -1,0 +1,21 @@
+---
+import Section from "./Section.astro";
+import site from "../data/site.json";
+---
+
+<Section id="skills" title="Skills">
+  <div class="grid gap-8 sm:grid-cols-2">
+    {
+      site.skills.map((group) => (
+        <div>
+          <h3 class="mb-3 font-semibold text-zinc-900 dark:text-zinc-100">{group.group}</h3>
+          <ul class="flex flex-wrap gap-2">
+            {group.items.map((skill) => (
+              <li class="rounded-full border border-zinc-200 px-3 py-1 text-sm dark:border-zinc-800">{skill}</li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</Section>

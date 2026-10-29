@@ -1,0 +1,10 @@
+---
+import Section from "./Section.astro";
+import site from "../data/site.json";
+---
+
+<Section id="about" title="About">
+  <div class="space-y-4 text-lg leading-relaxed">
+    {site.about.map((paragraph) => <p>{paragraph}</p>)}
+  </div>
+</Section>
