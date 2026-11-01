@@ -24,8 +24,16 @@ and potential clients. Projects will be added over time.
 - Astro 7: import `z` from `astro/zod` (not `astro:content`).
 
 ## Design rules
-- Minimal and modern, dark mode default with light mode toggle
-- One accent color: teal
+- Based on the GSAP style from Refero
+  (https://styles.refero.design/style/00537a20-e99e-4ef2-b119-c6f532c44cc9):
+  near-black canvas, warm cream text, big tight headlines, `{ }` bracket
+  annotations (`Annotation.astro`), outlined pill buttons (`.btn`, `.btn-primary`)
+- Dark mode default with light mode toggle
+- One accent color: green. Highlighter colors (orange, pink, lilac, blue) are
+  only for category labels like skill groups
+- Use the color tokens in `src/styles/global.css` (`text-ink`, `bg-canvas`,
+  `border-line`, `text-accent`...), not raw Tailwind colors
+- Font: Inter Tight (Google Fonts)
 - Mobile-first and fully responsive
 - Accessible: semantic HTML, alt text, keyboard navigation
 

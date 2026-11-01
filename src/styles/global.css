@@ -3,8 +3,70 @@
 /* Dark mode is controlled by a "dark" class on <html> (set by the theme toggle). */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/*
+ * Design tokens, based on the GSAP style from Refero: a near-black canvas, warm cream "chalk"
+ * text, one green accent, and a few highlighter colours used only to label categories.
+ * Each colour points at a CSS variable that flips between the light and dark themes below,
+ * so components write `text-ink` instead of pairing `text-x dark:text-y` everywhere.
+ */
+@theme {
+  --font-sans: "Inter Tight", "DM Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+
+  /* Highlighter colours for category labels (e.g. skill groups). Not for buttons or body text. */
+  --color-hl-orange: var(--hl-orange);
+  --color-hl-pink: var(--hl-pink);
+  --color-hl-lilac: var(--hl-lilac);
+  --color-hl-blue: var(--hl-blue);
+}
+
+/* Light theme: cream paper, near-black ink. Accents are darkened so they stay readable on cream. */
+:root {
+  --canvas: #fffce1;
+  --surface: #f5f1d3;
+  --ink: #0e100f;
+  --muted: #5e5e54;
+  --line: #d9d5b8;
+  --accent: #2f7a12;
+  --grad-from: #1f8a0a;
+  --grad-to: #5cc12e;
+  --hl-orange: #b35400;
+  --hl-pink: #a3168f;
+  --hl-lilac: #5a4fd1;
+  --hl-blue: #00708a;
+}
+
+/* Dark theme (the default): near-black canvas, warm cream chalk. */
+.dark {
+  --canvas: #0e100f;
+  --surface: #191919;
+  --ink: #fffce1;
+  --muted: #8a8a7c;
+  --line: #42433d;
+  --accent: #abff84;
+  --grad-from: #0ae448;
+  --grad-to: #abff84;
+  --hl-orange: #ff8709;
+  --hl-pink: #fec5fb;
+  --hl-lilac: #9d95ff;
+  --hl-blue: #00bae2;
+}
+
 html {
   scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--canvas);
 }
 
 /* Keep section headings visible below the sticky header when jumping via nav links. */
@@ -13,7 +75,7 @@ section[id] {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-teal-500);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -30,8 +92,23 @@ section[id] {
   }
 }
 
-/* Typography for rendered Markdown blog posts. */
 @layer components {
+  /* Buttons are outlined pills, never filled. */
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-full border border-ink px-6 py-2.5 text-lg font-semibold text-ink transition-colors hover:border-accent hover:text-accent;
+  }
+  .btn-sm {
+    @apply px-4 py-1.5 text-sm;
+  }
+  /* The one primary call to action gets a green gradient outline instead of a plain one. */
+  .btn-primary {
+    border: 1.5px solid transparent;
+    background:
+      linear-gradient(var(--canvas), var(--canvas)) padding-box,
+      linear-gradient(90deg, var(--grad-from), var(--grad-to)) border-box;
+  }
+
+  /* Typography for rendered Markdown blog posts. */
   .post-body {
     @apply leading-relaxed;
   }
@@ -39,16 +116,16 @@ section[id] {
     @apply mt-5;
   }
   .post-body h2 {
-    @apply mt-10 text-2xl font-semibold text-zinc-900 dark:text-zinc-100;
+    @apply mt-12 text-3xl font-semibold tracking-[-0.011em] text-ink;
   }
   .post-body h3 {
-    @apply mt-8 text-xl font-semibold text-zinc-900 dark:text-zinc-100;
+    @apply mt-8 text-2xl font-semibold tracking-[-0.011em] text-ink;
   }
   .post-body a {
-    @apply text-teal-700 underline underline-offset-4 hover:no-underline dark:text-teal-400;
+    @apply text-accent underline underline-offset-4 hover:no-underline;
   }
   .post-body strong {
-    @apply font-semibold text-zinc-900 dark:text-zinc-100;
+    @apply font-semibold text-ink;
   }
   .post-body ul {
     @apply list-disc space-y-2 pl-6;
@@ -57,13 +134,13 @@ section[id] {
     @apply list-decimal space-y-2 pl-6;
   }
   .post-body blockquote {
-    @apply border-l-4 border-teal-600 pl-4 italic dark:border-teal-400;
+    @apply border-l-2 border-accent pl-4 italic;
   }
   .post-body :not(pre) > code {
-    @apply rounded bg-zinc-100 px-1.5 py-0.5 text-sm dark:bg-zinc-800;
+    @apply rounded border border-line bg-surface px-1.5 py-0.5 text-sm;
   }
   .post-body pre {
-    @apply overflow-x-auto rounded-lg p-4 text-sm;
+    @apply overflow-x-auto rounded-lg border border-line p-4 text-sm;
   }
   .post-body img {
     @apply rounded-lg;

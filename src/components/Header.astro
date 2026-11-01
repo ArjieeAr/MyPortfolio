@@ -6,30 +6,24 @@ import { getPublishedPosts } from "../lib/posts";
 
 const posts = await getPublishedPosts();
 
-// Only link to sections that are actually shown on the page.
+// Only link to sections that are actually shown on the page. Contact is a separate pill button.
 const links = [
   { href: "/#about", label: "About" },
   { href: "/#skills", label: "Skills" },
   projects.length > 0 && { href: "/#projects", label: "Projects" },
   posts.length > 0 && { href: "/#blog", label: "Blog" },
-  { href: "/#contact", label: "Contact" },
 ].filter((link) => link !== false);
 ---
 
-<header
-  class="sticky top-0 z-40 border-b border-zinc-200 bg-white/85 backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/85"
->
-  <div class="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-3 sm:px-6">
-    <a href="/" class="font-semibold text-zinc-900 dark:text-zinc-100">{site.name}</a>
-    <nav aria-label="Main" class="order-last w-full sm:order-none sm:ml-auto sm:w-auto">
-      <ul class="flex flex-wrap gap-x-5 gap-y-1 text-sm">
+<header class="sticky top-0 z-40 border-b border-line bg-canvas/85 backdrop-blur">
+  <div class="mx-auto flex max-w-7xl flex-wrap items-center gap-x-10 gap-y-3 px-4 py-4 sm:px-8">
+    <a href="/" class="text-lg font-semibold tracking-[-0.011em] text-ink">{site.name}</a>
+    <nav aria-label="Main" class="order-last w-full sm:order-none sm:w-auto">
+      <ul class="flex flex-wrap gap-x-6 gap-y-1">
         {
           links.map((link) => (
             <li>
-              <a
-                href={link.href}
-                class="text-zinc-600 transition-colors hover:text-teal-700 dark:text-zinc-400 dark:hover:text-teal-400"
-              >
+              <a href={link.href} class="text-ink/75 transition-colors hover:text-ink">
                 {link.label}
               </a>
             </li>
@@ -37,6 +31,9 @@ const links = [
         }
       </ul>
     </nav>
-    <ThemeToggle />
+    <div class="ml-auto flex items-center gap-3">
+      <ThemeToggle />
+      <a href="/#contact" class="btn btn-sm">Contact</a>
+    </div>
   </div>
 </header>

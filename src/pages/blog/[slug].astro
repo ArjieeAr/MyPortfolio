@@ -1,6 +1,7 @@
 ---
 import { render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Annotation from "../../components/Annotation.astro";
 import site from "../../data/site.json";
 import { formatDate, getPublishedPosts } from "../../lib/posts";
 
@@ -15,17 +16,15 @@ const { Content } = await render(post);
 ---
 
 <BaseLayout title={`${post.data.title} | ${site.name}`} description={post.data.description}>
-  <article class="py-16">
-    <a href="/blog/" class="text-sm font-medium text-teal-700 underline-offset-4 hover:underline dark:text-teal-400">
-      &larr; All posts
-    </a>
-    <header class="mt-8 mb-10">
-      <h1 class="text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">{post.data.title}</h1>
-      <time datetime={post.data.pubDate.toISOString()} class="mt-3 block text-sm text-zinc-500">
-        {formatDate(post.data.pubDate)}
+  <article class="max-w-3xl py-16 sm:py-24">
+    <a href="/blog/" class="btn btn-sm">&larr; All posts</a>
+    <header class="mt-10 mb-12">
+      <h1 class="text-4xl leading-[1.05] font-semibold tracking-[-0.02em] text-ink sm:text-6xl">{post.data.title}</h1>
+      <time datetime={post.data.pubDate.toISOString()} class="mt-6 block text-accent">
+        <Annotation>{formatDate(post.data.pubDate)}</Annotation>
       </time>
     </header>
-    <div class="post-body text-lg">
+    <div class="post-body text-lg text-ink/80">
       <Content />
     </div>
   </article>

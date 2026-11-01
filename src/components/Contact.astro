@@ -3,24 +3,22 @@ import Section from "./Section.astro";
 import site from "../data/site.json";
 
 const { email, github, linkedin } = site.contact;
-const linkClass =
-  "font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 transition-colors hover:text-teal-700 hover:decoration-teal-700 dark:text-zinc-100 dark:decoration-zinc-700 dark:hover:text-teal-400 dark:hover:decoration-teal-400";
 ---
 
 <Section id="contact" title="Contact">
-  <p class="max-w-xl text-lg leading-relaxed">
+  <p class="max-w-2xl text-2xl leading-snug tracking-[-0.011em] sm:text-3xl">
     I'm currently looking for new opportunities. Whether you have a role, a project, or just a question, my inbox is
     open.
   </p>
+  <!-- The email address is the main call to action, set in large display type. -->
   <a
     href={`mailto:${email}`}
-    class="mt-8 inline-block rounded-md bg-teal-700 px-5 py-2.5 font-medium text-white transition-colors hover:bg-teal-800 dark:bg-teal-400 dark:text-zinc-950 dark:hover:bg-teal-300"
+    class="mt-10 block w-fit text-2xl font-semibold tracking-[-0.02em] [overflow-wrap:anywhere] text-accent underline decoration-1 underline-offset-8 transition-all hover:decoration-2 sm:text-4xl xl:text-5xl"
   >
-    Say hello
+    {email}
   </a>
-  <ul class="mt-8 flex flex-wrap gap-x-6 gap-y-2">
-    <li><a href={`mailto:${email}`} class={linkClass}>{email}</a></li>
-    <li><a href={github} class={linkClass}>GitHub</a></li>
-    <li><a href={linkedin} class={linkClass}>LinkedIn</a></li>
+  <ul class="mt-10 flex flex-wrap gap-3">
+    <li><a href={github} class="btn btn-sm">GitHub &rarr;</a></li>
+    <li><a href={linkedin} class="btn btn-sm">LinkedIn &rarr;</a></li>
   </ul>
 </Section>

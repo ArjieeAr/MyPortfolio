@@ -1,10 +1,14 @@
 ---
 import Section from "./Section.astro";
 import site from "../data/site.json";
+
+const [intro, ...rest] = site.about;
 ---
 
 <Section id="about" title="About">
-  <div class="space-y-4 text-lg leading-relaxed">
-    {site.about.map((paragraph) => <p>{paragraph}</p>)}
+  <div class="max-w-3xl space-y-6">
+    {/* The first paragraph is set large as an intro; the rest are regular body text. */}
+    <p class="text-2xl leading-snug tracking-[-0.011em] sm:text-3xl">{intro}</p>
+    {rest.map((paragraph) => <p class="text-lg leading-relaxed text-ink/75">{paragraph}</p>)}
   </div>
 </Section>

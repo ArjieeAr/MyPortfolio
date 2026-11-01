@@ -1,4 +1,6 @@
 ---
+import Annotation from "./Annotation.astro";
+
 interface Props {
   id: string;
   title: string;
@@ -7,9 +9,16 @@ interface Props {
 const { id, title } = Astro.props;
 ---
 
-<section id={id} aria-labelledby={`${id}-heading`} class="border-t border-zinc-200 py-16 dark:border-zinc-800">
-  <h2 id={`${id}-heading`} class="mb-8 text-sm font-semibold tracking-widest text-teal-700 uppercase dark:text-teal-400">
-    {title}
+<!-- On large screens the heading sits in a narrow left column and the content fills the rest. -->
+<section
+  id={id}
+  aria-labelledby={`${id}-heading`}
+  class="border-t border-line py-20 lg:grid lg:grid-cols-[14rem_1fr] lg:gap-12 lg:py-28"
+>
+  <h2 id={`${id}-heading`} class="mb-10 text-lg text-accent lg:mb-0">
+    <Annotation>{title}</Annotation>
   </h2>
-  <slot />
+  <div>
+    <slot />
+  </div>
 </section>

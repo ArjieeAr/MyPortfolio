@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Annotation from "../../components/Annotation.astro";
 import PostList from "../../components/PostList.astro";
 import site from "../../data/site.json";
 import { getPublishedPosts } from "../../lib/posts";
@@ -8,9 +9,16 @@ const posts = await getPublishedPosts();
 ---
 
 <BaseLayout title={`Blog | ${site.name}`} description={`Posts by ${site.name}.`}>
-  <section aria-labelledby="blog-heading" class="py-16">
-    <h1 id="blog-heading" class="text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">Blog</h1>
-    <p class="mt-4 mb-12 text-lg">Notes on what I'm building and learning.</p>
-    {posts.length > 0 ? <PostList posts={posts} /> : <p>No posts yet. Check back soon.</p>}
+  <section aria-labelledby="blog-heading" class="py-16 sm:py-24">
+    <h1
+      id="blog-heading"
+      class="text-[clamp(3.5rem,12vw,9rem)] leading-[0.9] font-semibold tracking-[-0.02em] text-ink"
+    >
+      Blog
+    </h1>
+    <p class="mt-8 mb-16 text-lg"><Annotation>Notes on what I'm building and learning.</Annotation></p>
+    <div class="max-w-4xl">
+      {posts.length > 0 ? <PostList posts={posts} /> : <p>No posts yet. Check back soon.</p>}
+    </div>
   </section>
 </BaseLayout>

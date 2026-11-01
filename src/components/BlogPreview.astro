@@ -12,10 +12,7 @@ const posts = await getPublishedPosts();
   posts.length > 0 && (
     <Section id="blog" title="Latest Posts">
       <PostList posts={posts.slice(0, LATEST_COUNT)} />
-      <a
-        href="/blog/"
-        class="mt-10 inline-block font-medium text-teal-700 underline-offset-4 hover:underline dark:text-teal-400"
-      >
+      <a href="/blog/" class="btn btn-sm mt-10">
         All posts &rarr;
       </a>
     </Section>

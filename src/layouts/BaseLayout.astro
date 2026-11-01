@@ -23,6 +23,10 @@ const { title = `${site.name} | ${site.role}`, description = site.tagline } = As
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta name="color-scheme" content="dark light" />
+    <!-- Inter Tight is the closest free match to the design's typeface (Mori). -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600&display=swap" rel="stylesheet" />
     <!-- Runs before the page paints so a saved light theme never flashes dark first. -->
     <script is:inline>
       try {
@@ -32,21 +36,21 @@ const { title = `${site.name} | ${site.role}`, description = site.tagline } = As
       } catch {}
     </script>
   </head>
-  <body
-    class="min-h-screen bg-white text-zinc-700 antialiased transition-colors dark:bg-zinc-950 dark:text-zinc-300"
-  >
+  <body class="min-h-screen bg-canvas tracking-[-0.01em] text-ink antialiased transition-colors">
     <a
       href="#main"
-      class="sr-only rounded-md bg-teal-700 px-4 py-2 font-medium text-white focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50"
+      class="sr-only rounded-full bg-accent px-5 py-2 font-semibold text-canvas focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50"
     >
       Skip to content
     </a>
     <Header />
-    <main id="main" class="mx-auto max-w-3xl px-4 sm:px-6">
+    <main id="main" class="mx-auto max-w-7xl px-4 sm:px-8">
       <slot />
     </main>
-    <footer class="mx-auto max-w-3xl px-4 py-10 text-sm text-zinc-500 sm:px-6">
-      <p>&copy; {new Date().getFullYear()} {site.name}. Built with Astro and Tailwind CSS.</p>
+    <footer class="border-t border-line">
+      <div class="mx-auto max-w-7xl px-4 py-10 text-muted sm:px-8">
+        <p>&copy; {new Date().getFullYear()} {site.name}. Built with Astro and Tailwind CSS.</p>
+      </div>
     </footer>
   </body>
 </html>

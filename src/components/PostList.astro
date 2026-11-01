@@ -9,23 +9,22 @@ interface Props {
 const { posts } = Astro.props;
 ---
 
-<ul class="space-y-8">
+<ul class="divide-y divide-line">
   {
     posts.map((post) => (
-      <li>
-        <article>
-          <time datetime={post.data.pubDate.toISOString()} class="text-sm text-zinc-500">
+      <li class="py-6 first:pt-0 last:pb-0">
+        <article class="grid gap-2 sm:grid-cols-[9rem_1fr] sm:gap-8">
+          <time datetime={post.data.pubDate.toISOString()} class="text-muted sm:pt-1.5">
             {formatDate(post.data.pubDate)}
           </time>
-          <h3 class="mt-1 text-lg font-semibold">
-            <a
-              href={`/blog/${post.id}/`}
-              class="text-zinc-900 transition-colors hover:text-teal-700 dark:text-zinc-100 dark:hover:text-teal-400"
-            >
-              {post.data.title}
-            </a>
-          </h3>
-          <p class="mt-1">{post.data.description}</p>
+          <div>
+            <h3 class="text-2xl font-semibold tracking-[-0.011em]">
+              <a href={`/blog/${post.id}/`} class="text-ink transition-colors hover:text-accent">
+                {post.data.title}
+              </a>
+            </h3>
+            <p class="mt-2 text-lg leading-relaxed text-ink/75">{post.data.description}</p>
+          </div>
         </article>
       </li>
     ))
