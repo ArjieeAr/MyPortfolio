@@ -9,8 +9,11 @@ import { projects } from "../lib/projects";
   projects.length > 0 && (
     <Section id="projects" title="Projects">
       <div class="grid gap-6">
+        {/* The reveal goes on a wrapper because the card has its own hover transition. */}
         {projects.map((project) => (
-          <ProjectCard project={project} />
+          <div data-reveal>
+            <ProjectCard project={project} />
+          </div>
         ))}
       </div>
     </Section>

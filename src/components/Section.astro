@@ -10,12 +10,13 @@ const { id, title } = Astro.props;
 ---
 
 <!-- On large screens the heading sits in a narrow left column and the content fills the rest. -->
+<!-- The solid background lets sections slide up over the hero while it's pinned (see Hero.astro). -->
 <section
   id={id}
   aria-labelledby={`${id}-heading`}
-  class="border-t border-line py-20 lg:grid lg:grid-cols-[14rem_1fr] lg:gap-12 lg:py-28"
+  class="relative z-10 border-t border-line bg-canvas py-20 lg:grid lg:grid-cols-[14rem_1fr] lg:gap-12 lg:py-28"
 >
-  <h2 id={`${id}-heading`} class="mb-10 text-lg text-accent lg:mb-0">
+  <h2 id={`${id}-heading`} class="mb-10 text-lg text-accent lg:mb-0" data-reveal>
     <Annotation>{title}</Annotation>
   </h2>
   <div>

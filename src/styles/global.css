@@ -30,6 +30,7 @@
 
 /* Light theme: cream paper, near-black ink. Accents are darkened so they stay readable on cream. */
 :root {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --canvas: #fffce1;
   --surface: #f5f1d3;
   --ink: #0e100f;
@@ -92,6 +93,75 @@ section[id] {
   }
 }
 
+/*
+ * Motion. Everything below only runs for visitors who haven't asked their device for reduced motion;
+ * for them the page simply appears as-is.
+ *
+ * - `.intro`: plays once on page load. Stagger items by giving each a `--delay` (e.g. style="--delay: 200ms").
+ * - `data-reveal`: fades and slides in each time it scrolls into view (src/scripts/reveal.ts toggles
+ *   `is-visible`). Stagger siblings with `--i` (0, 1, 2...). Put it on a wrapper, not on an element
+ *   with its own Tailwind `transition-*` class, or the two transitions overwrite each other.
+ * - Curly brackets inside either one "draw" outward from their middle point.
+ */
+@keyframes rise {
+  from {
+    opacity: 0;
+    translate: 0 max(0.25em, 0.75rem);
+  }
+}
+
+@keyframes draw {
+  from {
+    clip-path: inset(50% 0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .intro {
+    animation: rise 0.9s var(--ease-out) both;
+    animation-delay: var(--delay, 0ms);
+  }
+  .intro .annotation-bracket {
+    animation: draw 0.9s var(--ease-out) both;
+    animation-delay: calc(var(--delay, 0ms) + 150ms);
+  }
+
+  /* `.js` is set in <head>, so content stays visible if JavaScript never runs. */
+  .js [data-reveal] {
+    transition:
+      opacity 0.8s var(--ease-out),
+      translate 0.8s var(--ease-out);
+    transition-delay: calc(var(--i, 0) * 70ms);
+  }
+  .js [data-reveal]:not(.is-visible) {
+    opacity: 0;
+    translate: 0 1.5rem;
+  }
+  /* Scrolling back up: elements re-enter from the top, so they drop down into place instead. */
+  .js [data-reveal][data-reveal-above]:not(.is-visible) {
+    translate: 0 -1.5rem;
+  }
+  .js [data-reveal] .annotation-bracket {
+    transition: clip-path 0.9s var(--ease-out) 0.15s;
+  }
+  .js [data-reveal]:not(.is-visible) .annotation-bracket {
+    clip-path: inset(50% 0);
+  }
+}
+
+/* Lets the primary button's gradient outline rotate smoothly (see .btn-primary below). */
+@property --btn-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 90deg;
+}
+
+@keyframes btn-sweep {
+  to {
+    --btn-angle: 450deg;
+  }
+}
+
 @layer components {
   /* Buttons are outlined pills, never filled. */
   .btn {
@@ -105,7 +175,41 @@ section[id] {
     border: 1.5px solid transparent;
     background:
       linear-gradient(var(--canvas), var(--canvas)) padding-box,
-      linear-gradient(90deg, var(--grad-from), var(--grad-to)) border-box;
+      conic-gradient(from var(--btn-angle), var(--grad-from), var(--grad-to), var(--grad-from)) border-box;
+  }
+  /* Keep the gradient on hover (instead of .btn's solid green border) and spin it around the pill. */
+  .btn-primary:hover {
+    border-color: transparent;
+  }
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .btn-primary:hover {
+      animation: btn-sweep 2.5s linear infinite;
+    }
+  }
+
+  /* Arrows inside buttons nudge in their direction on hover. */
+  .btn-arrow {
+    display: inline-block;
+    transition: translate 0.3s var(--ease-out);
+  }
+  .btn:hover .btn-arrow {
+    translate: 0.25em 0;
+  }
+  .btn:hover .btn-arrow-back {
+    translate: -0.25em 0;
+  }
+
+  /* An underline that slides in from the left on hover. */
+  .nav-link {
+    padding-bottom: 2px;
+    background: linear-gradient(currentColor, currentColor) no-repeat left bottom / 0% 1px;
+    transition:
+      background-size 0.35s var(--ease-out),
+      color 0.2s;
+  }
+  .nav-link:hover,
+  .nav-link:focus-visible {
+    background-size: 100% 1px;
   }
 
   /* Typography for rendered Markdown blog posts. */

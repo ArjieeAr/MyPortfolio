@@ -10,13 +10,13 @@ const bracket = "M9 1C6 1 5 2.5 5 6v9c0 3-1 5-4 5 3 0 4 2 4 5v9c0 3.5 1 5 4 5";
 ---
 
 <span class:list={["inline-flex items-stretch gap-[0.5em]", className]}>
-  <span aria-hidden="true" class="relative w-[0.45em] shrink-0 text-muted">
+  <span aria-hidden="true" class="annotation-bracket relative w-[0.45em] shrink-0 text-muted">
     <svg class="absolute inset-0 size-full" viewBox="0 0 10 40" preserveAspectRatio="none" fill="none">
       <path d={bracket} stroke="currentColor" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke" />
     </svg>
   </span>
   <span class="py-[0.15em]"><slot /></span>
-  <span aria-hidden="true" class="relative w-[0.45em] shrink-0 -scale-x-100 text-muted">
+  <span aria-hidden="true" class="annotation-bracket relative w-[0.45em] shrink-0 -scale-x-100 text-muted">
     <svg class="absolute inset-0 size-full" viewBox="0 0 10 40" preserveAspectRatio="none" fill="none">
       <path d={bracket} stroke="currentColor" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke" />
     </svg>

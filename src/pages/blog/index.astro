@@ -12,11 +12,13 @@ const posts = await getPublishedPosts();
   <section aria-labelledby="blog-heading" class="py-16 sm:py-24">
     <h1
       id="blog-heading"
-      class="text-[clamp(3.5rem,12vw,9rem)] leading-[0.9] font-semibold tracking-[-0.02em] text-ink"
+      class="intro text-[clamp(3.5rem,12vw,9rem)] leading-[0.9] font-semibold tracking-[-0.02em] text-ink"
     >
       Blog
     </h1>
-    <p class="mt-8 mb-16 text-lg"><Annotation>Notes on what I'm building and learning.</Annotation></p>
+    <p class="intro mt-8 mb-16 text-lg" style="--delay: 150ms">
+      <Annotation>Notes on what I'm building and learning.</Annotation>
+    </p>
     <div class="max-w-4xl">
       {posts.length > 0 ? <PostList posts={posts} /> : <p>No posts yet. Check back soon.</p>}
     </div>

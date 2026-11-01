@@ -11,10 +11,15 @@ const groupColors = ["text-hl-orange", "text-hl-pink", "text-hl-lilac", "text-hl
     {
       site.skills.map((group, i) => (
         <div class="grid gap-4 py-6 first:pt-0 last:pb-0 sm:grid-cols-[13rem_1fr] sm:gap-8">
-          <h3 class:list={["text-lg font-semibold", groupColors[i % groupColors.length]]}>{group.group}</h3>
+          <h3 class:list={["text-lg font-semibold", groupColors[i % groupColors.length]]} data-reveal>
+            {group.group}
+          </h3>
+          {/* Pills appear one after another, just after their group name. */}
           <ul class="flex flex-wrap gap-2">
-            {group.items.map((skill) => (
-              <li class="rounded-lg border border-line px-3 py-1.5 text-ink/90">{skill}</li>
+            {group.items.map((skill, j) => (
+              <li class="rounded-lg border border-line px-3 py-1.5 text-ink/90" data-reveal style={`--i: ${j + 1}`}>
+                {skill}
+              </li>
             ))}
           </ul>
         </div>

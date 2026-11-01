@@ -9,18 +9,38 @@ const lastWord = words.pop();
 const firstWords = words.join(" ");
 ---
 
-<section aria-labelledby="hero-heading" class="pt-14 pb-20 sm:pt-20 sm:pb-28">
-  <p class="text-lg text-accent"><Annotation>{site.role}</Annotation></p>
+<!--
+  Two layers of motion, kept on separate elements so they never fight over the same property:
+  - inner `.intro` elements play the CSS entrance animation once on load;
+  - outer `data-hero-*` elements are moved by GSAP as you scroll (script below).
+-->
+<section aria-labelledby="hero-heading" class="pt-14 pb-20 sm:pt-20 sm:pb-28" data-hero>
+  <div data-hero-fade>
+    <p class="intro text-lg text-accent"><Annotation>{site.role}</Annotation></p>
+  </div>
   <h1
     id="hero-heading"
     class="mt-8 text-[clamp(3.5rem,15vw,14rem)] leading-[0.9] font-semibold tracking-[-0.02em] text-ink"
   >
-    {firstWords && <span class="block">{firstWords} </span>}
-    <span class="block sm:text-right">{lastWord}.</span>
+    {
+      firstWords && (
+        <span class="block" data-hero-line="left">
+          <span class="intro block" style="--delay: 100ms">
+            {firstWords}{" "}
+          </span>
+        </span>
+      )
+    }
+    <span class="block sm:text-right" data-hero-line="right">
+      <span class="intro block" style="--delay: 220ms">{lastWord}.</span>
+    </span>
   </h1>
-  <div class="mt-12 flex flex-col gap-8 sm:mt-16 sm:flex-row sm:items-end sm:justify-between">
-    <p class="max-w-md text-lg leading-snug"><Annotation>{site.tagline}</Annotation></p>
-    <div class="flex flex-wrap gap-3">
+  <div
+    class="mt-12 flex flex-col gap-8 sm:mt-16 sm:flex-row sm:items-end sm:justify-between"
+    data-hero-fade
+  >
+    <p class="intro max-w-md text-lg leading-snug" style="--delay: 450ms"><Annotation>{site.tagline}</Annotation></p>
+    <div class="intro flex flex-wrap gap-3" style="--delay: 550ms">
       {
         projects.length > 0 && (
           <a href="#projects" class="btn btn-primary">
@@ -32,3 +52,38 @@ const firstWords = words.join(" ");
     </div>
   </div>
 </section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const hero = document.querySelector<HTMLElement>("[data-hero]");
+
+  if (hero) {
+    // matchMedia runs this only when both conditions are true, and undoes it automatically when they stop
+    // being true (e.g. the window shrinks). Phones are skipped: pinning feels janky with mobile browser bars.
+    gsap.matchMedia().add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: hero,
+            // Pin the hero from the very top of the page for as far as the hero is tall. With pinSpacing off,
+            // the next sections keep scrolling and slide up over it (they have a solid background).
+            start: 0,
+            end: () => `+=${hero.offsetHeight}`,
+            pin: true,
+            pinSpacing: false,
+            // Ties the animation to the scrollbar (with 0.6s of smoothing) instead of playing it on its own.
+            scrub: 0.6,
+            invalidateOnRefresh: true,
+          },
+          defaults: { ease: "none" },
+        })
+        .to("[data-hero-line='left']", { xPercent: -15, opacity: 0 }, 0)
+        .to("[data-hero-line='right']", { xPercent: 15, opacity: 0 }, 0)
+        .to("[data-hero-fade]", { y: -40, opacity: 0 }, 0);
+    });
+  }
+</script>

@@ -6,19 +6,25 @@ const { email, github, linkedin } = site.contact;
 ---
 
 <Section id="contact" title="Contact">
-  <p class="max-w-2xl text-2xl leading-snug tracking-[-0.011em] sm:text-3xl">
+  <p class="max-w-2xl text-2xl leading-snug tracking-[-0.011em] sm:text-3xl" data-reveal>
     I'm currently looking for new opportunities. Whether you have a role, a project, or just a question, my inbox is
     open.
   </p>
   <!-- The email address is the main call to action, set in large display type. -->
-  <a
-    href={`mailto:${email}`}
-    class="mt-10 block w-fit text-2xl font-semibold tracking-[-0.02em] [overflow-wrap:anywhere] text-accent underline decoration-1 underline-offset-8 transition-all hover:decoration-2 sm:text-4xl xl:text-5xl"
-  >
-    {email}
-  </a>
-  <ul class="mt-10 flex flex-wrap gap-3">
-    <li><a href={github} class="btn btn-sm">GitHub &rarr;</a></li>
-    <li><a href={linkedin} class="btn btn-sm">LinkedIn &rarr;</a></li>
+  <div class="mt-10" data-reveal style="--i: 1">
+    <a
+      href={`mailto:${email}`}
+      class="block w-fit text-2xl font-semibold tracking-[-0.02em] [overflow-wrap:anywhere] text-accent underline decoration-1 underline-offset-8 transition-all hover:decoration-2 sm:text-4xl xl:text-5xl"
+    >
+      {email}
+    </a>
+  </div>
+  <ul class="mt-10 flex flex-wrap gap-3" data-reveal style="--i: 2">
+    <li>
+      <a href={github} class="btn btn-sm">GitHub <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+    </li>
+    <li>
+      <a href={linkedin} class="btn btn-sm">LinkedIn <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+    </li>
   </ul>
 </Section>

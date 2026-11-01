@@ -8,7 +8,10 @@ interface Props {
 const { project } = Astro.props;
 ---
 
-<article class="rounded-lg border border-line bg-surface p-6 transition-colors hover:border-muted sm:p-8">
+<!-- On hover the edge picks up a faint green glow (an even halo, not an offset drop shadow). -->
+<article
+  class="h-full rounded-lg border border-line bg-surface p-6 transition-[border-color,box-shadow] duration-300 hover:border-accent/50 hover:shadow-[0_0_48px_-20px_var(--accent)] sm:p-8"
+>
   <h3 class="text-3xl font-semibold tracking-[-0.011em] text-ink sm:text-4xl">{project.title}</h3>
   <p class="mt-4 max-w-3xl text-lg leading-relaxed text-ink/75">{project.description}</p>
   <ul class="mt-6 flex flex-wrap gap-2" aria-label="Technologies used">
@@ -19,12 +22,12 @@ const { project } = Astro.props;
       <div class="mt-8 flex flex-wrap gap-3">
         {project.live && (
           <a href={project.live} class="btn btn-sm" aria-label={`Live site for ${project.title}`}>
-            Live site &rarr;
+            Live site <span class="btn-arrow" aria-hidden="true">&rarr;</span>
           </a>
         )}
         {project.repo && (
           <a href={project.repo} class="btn btn-sm" aria-label={`Source code for ${project.title}`}>
-            Source code &rarr;
+            Source code <span class="btn-arrow" aria-hidden="true">&rarr;</span>
           </a>
         )}
       </div>

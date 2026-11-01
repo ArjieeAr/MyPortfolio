@@ -17,10 +17,14 @@ const { Content } = await render(post);
 
 <BaseLayout title={`${post.data.title} | ${site.name}`} description={post.data.description}>
   <article class="max-w-3xl py-16 sm:py-24">
-    <a href="/blog/" class="btn btn-sm">&larr; All posts</a>
+    <a href="/blog/" class="btn btn-sm">
+      <span class="btn-arrow btn-arrow-back" aria-hidden="true">&larr;</span> All posts
+    </a>
     <header class="mt-10 mb-12">
-      <h1 class="text-4xl leading-[1.05] font-semibold tracking-[-0.02em] text-ink sm:text-6xl">{post.data.title}</h1>
-      <time datetime={post.data.pubDate.toISOString()} class="mt-6 block text-accent">
+      <h1 class="intro text-4xl leading-[1.05] font-semibold tracking-[-0.02em] text-ink sm:text-6xl">
+        {post.data.title}
+      </h1>
+      <time datetime={post.data.pubDate.toISOString()} class="intro mt-6 block text-accent" style="--delay: 150ms">
         <Annotation>{formatDate(post.data.pubDate)}</Annotation>
       </time>
     </header>

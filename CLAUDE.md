@@ -34,6 +34,10 @@ and potential clients. Projects will be added over time.
 - Use the color tokens in `src/styles/global.css` (`text-ink`, `bg-canvas`,
   `border-line`, `text-accent`...), not raw Tailwind colors
 - Font: Inter Tight (Google Fonts)
+- Motion (see "Motion" in `global.css`): `.intro` for on-load entrances,
+  `data-reveal` (+ `--i` for stagger) for scroll reveals. GSAP is used only
+  for the hero's pinned scroll effect in `Hero.astro`. All motion must switch
+  off under `prefers-reduced-motion`
 - Mobile-first and fully responsive
 - Accessible: semantic HTML, alt text, keyboard navigation
 
