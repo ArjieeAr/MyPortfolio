@@ -33,3 +33,5 @@ Two correct queries can return rows in different orders or with different column
 The project has known limits that I'd tackle first at scale. The rate limit can be beaten by two simultaneous requests, and the query runs as a superuser when a dedicated low-privilege role would be safer. Writing these down was useful, because it turned vague worries into a concrete list.
 
 The source code is on [GitHub](https://github.com/ArjieeAr/SQL-Practice).
+
+**Update:** I've since added admin accounts and user proposals. Read about it in [Letting People Add Problems to My SQL Practice Platform](/blog/sql-practice-admin-and-proposals).
